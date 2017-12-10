@@ -10,7 +10,7 @@ Web scraping is done with BeautifulSoup library of python. nltk(Natural Language
 This code will require some libraries which you need to install:
 Following are the libraries' names with the required steps:
 1. *requests*  
-Step-> run the command: pip install requests  
+Step-> run the command: **pip install requests**  
 
 2. *bs4*  
 step-> run the command : **sudo apt-get install python3-bs4**  
