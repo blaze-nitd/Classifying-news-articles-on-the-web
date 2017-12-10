@@ -10,30 +10,29 @@ Web scraping is done with BeautifulSoup library of python. nltk(Natural Language
 This code will require some libraries which you need to install:
 Following are the libraries' names with the required steps:
 1. *requests*  
-Step-> run the command: **pip install requests**  
+Step-> run the command: `pip install requests`  
 
 2. *bs4*  
-step-> run the command : **sudo apt-get install python3-bs4**  
+step-> run the command : `sudo apt-get install python3-bs4`  
 
 3. *nltk*  
-step-> run the command : **sudo apt-get install python-numpy python-nltk**  
+step-> run the command : `sudo apt-get install python-numpy python-nltk`  
 
 
 **II)** *Also you have to install the stopwords data from nltk data.  
 Run the following two lines in python interpreter:*  
 
-**import nltk  
-nltk.download("stopwords")**  
-
+`import nltk`  
+`nltk.download("stopwords")`  
 
 
 
 **III)** *Replace the testUrl variable with the article's URL.
 Then open the URL's page source and locate where the actual text is contained in the article. Replace "post-body" with that name.*
 
-**IV)** *In the command line  run:**
+**IV)** *In the command line  run:*  
 
-**python file-name.py**
+`python file-name.py`  
 
 ---
 Note: file-name here refers to either of the two files included in this repository
