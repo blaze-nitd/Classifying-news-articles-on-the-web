@@ -11,6 +11,7 @@ from nltk.corpus import stopwords
 from collections import defaultdict
 from string import punctuation
 import urllib.request
+from heapq import nlargest
 
 
 # In[54]:
@@ -21,13 +22,13 @@ def getWashPostText(url,token):
         page=urllib.request.urlopen(url).read().decode('utf8')
     except:
         return (None,None)
-    soup=BeautifulSoup(page)
+    soup=BeautifulSoup(page,"lxml")
     if(soup is None):
         return (None,None)
     text=""
     if(soup.find_all(token) is not None):
         text=''.join(map(lambda p: p.text, soup.find_all(token)))
-        soup2=BeautifulSoup(text)
+        soup2=BeautifulSoup(text,"lxml")
         if(soup2.find_all('p') is not None):
             text=''.join(map(lambda p: p.text, soup.find_all('p')))
     return text, soup.title.text
@@ -38,7 +39,7 @@ def getWashPostText(url,token):
 
 def getNYTText(url,token):
     page=urllib.request.urlopen(url).read().decode('utf8')
-    soup=BeautifulSoup(page)
+    soup=BeautifulSoup(page,"lxml")
     title=soup.find('title').text
     mydivs=soup.find_all("p" , {"class":"story-body-text story-content"})
     text=''.join(map(lambda p:p.text,mydivs))
@@ -51,7 +52,7 @@ def getNYTText(url,token):
 def scrapeSource(url,magicFrag='2015',scraperFunction=getNYTText, token='None'):
     urlBodies={}
     response=urllib.request.urlopen(url).read().decode('utf8')
-    soup=BeautifulSoup(response)
+    soup=BeautifulSoup(response,"lxml")
     numerror=0
     for a in soup.find_all('a'):
         try:
@@ -173,7 +174,7 @@ for techUrlDictionary in [newYorkTimesNonTechArticles,washingtonPostNonTechArtic
 
 def getDoxyDonkeyText(testUrl,token):
     response = requests.get(testUrl)
-    soup = BeautifulSoup(response.content)
+    soup = BeautifulSoup(response.content,"lxml")
     page = str(soup)
     title = soup.find("title").text
     mydivs = soup.findAll("div", {"class":token})
@@ -202,5 +203,6 @@ labels=defaultdict(int)
 knn=nlargest(5,similarities,key=similarities.get)
 for oneNeighbour in knn:
     labels[articleSummaries[oneNeighbour]['label']]+=1
-nlargest(1,labels,key=labels.get)
+print("-------------------------------------------------------------------------")
+print("Voila!The article is a "+nlargest(1,labels,key=labels.get)[0]+" article")
 
