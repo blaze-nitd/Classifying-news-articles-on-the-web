@@ -6,6 +6,19 @@ Web scraping is done with BeautifulSoup library of python. nltk(Natural Language
 
 **Usage**
 
+Use Python3 for running the codes on the project.  
+This code will require some libraries which you need to install:
+Following are the libraries' names with the required steps:
+1. *requests*  
+Step-> run the command: pip install requests  
+
+2. *bs4*  
+step-> run the command : sudo apt-get install python3-bs4  
+
+3. *nltk*  
+step-> run the command : sudo apt-get install python-numpy python-nltk  
+
+
 Replace the testUrl variable with the article's URL.
 Then open the URL's page source and locate where the actual text is contained in the article. Replace "post-body" with that name.
 
