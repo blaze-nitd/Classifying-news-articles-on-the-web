@@ -12,7 +12,7 @@ from collections import defaultdict
 from string import punctuation
 import urllib.request
 from heapq import nlargest
-
+import sys
 
 # In[54]:
 
@@ -61,7 +61,7 @@ def scrapeSource(url,magicFrag='2015',scraperFunction=getNYTText, token='None'):
                 body=scraperFunction(url,token)
                 if(body and len(body)>0):
                     urlBodies[url]=body
-                print(url)
+                #print(url)
         except:
             numerror=numerror+1
     return urlBodies
@@ -160,7 +160,7 @@ for techUrlDictionary in [newYorkTimesTechArticles,washingtonPostTechArticles]:
 
 for techUrlDictionary in [newYorkTimesNonTechArticles,washingtonPostNonTechArticles]:
     for articleUrl in techUrlDictionary:
-        if(len(techUrlDictionary[articleUrl][0])>0):
+        if((techUrlDictionary[articleUrl][0]) is not None):
             fs=FrequencySummarizer()
             summary=fs.extractFeatures(techUrlDictionary[articleUrl],25)
             articleSummaries[articleUrl]={'feature-vector':summary,'label':'Non-Tech'}
