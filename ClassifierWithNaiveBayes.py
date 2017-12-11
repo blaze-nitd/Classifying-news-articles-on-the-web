@@ -185,8 +185,8 @@ def getDoxyDonkeyText(testUrl,token):
 # In[70]:
 
 
-testUrl = "http://doxydonkey.blogspot.in"
-testArticle = getDoxyDonkeyText(testUrl,"post-body")
+testUrl = sys.argv[1]
+testArticle = getDoxyDonkeyText(testUrl,sys.argv[2])
 
 fs = FrequencySummarizer()
 testArticleSummary = fs.extractFeatures(testArticle, 25)
